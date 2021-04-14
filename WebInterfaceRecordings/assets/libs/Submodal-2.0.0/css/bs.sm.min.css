@@ -1,0 +1,51 @@
+/*! Submodal v2.0.0 */
+.submodal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+}
+
+.submodal.transition {
+    -webkit-transition: all .6s ease;
+    transition: all .6s ease;
+}
+
+.submodal.in {
+    top: 0 !important;
+}
+
+.submodal .modal-dialog {
+    width: 80%;
+    margin: 0 auto;
+    z-index: 9;
+}
+
+.submodal .modal-content {
+    -webkit-border-top-left-radius: 0;
+    -moz-border-top-left-radius: 0;
+    border-top-left-radius: 0;
+    -webkit-border-top-right-radius: 0;
+    -moz-border-top-right-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.submodal .modal-header {
+    display: none
+}
+
+.modal.parent .modal-body{
+    overflow: hidden;
+    -webkit-filter: blur(4px);
+    -moz-filter: blur(4px);
+    -o-filter: blur(4px);
+    -ms-filter: blur(4px);
+    filter: blur(4px);
+}
+
+@media (max-width: 767px) {
+    .submodal .modal-dialog {
+        width: 90%
+    }
+}

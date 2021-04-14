@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="8673d53d-eca9-494c-9add-10c39e153772" name="konexo" url="https://konexo.sixbell.cloud">
+        <fileTransfer rootFolder="/home/ubuntu/konexo" accessType="SFTP" host="konexo.sixbell.cloud" port="22" sshConfigId="6f047a25-639c-4820-b039-2afb57cc1d3b" sshConfig="konexo" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="60000" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

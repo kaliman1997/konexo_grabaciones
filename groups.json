@@ -1,0 +1,30 @@
+[
+	{
+		"_id": {
+			"$oid": "6068c7f3245c782e76e03b05"
+		},
+		"id": "d3162463-294f-4bc6-a014-7b714cd82ba9",
+		"name": "Grabaciones Konexo"
+	},
+	{
+		"_id": {
+			"$oid": "6068c7f3245c782e76e03b06"
+		},
+		"id": "7b5a7803-b5ee-4fa0-82cc-7108b97ad6b3",
+		"name": "Principal"
+	},
+	{
+		"_id": {
+			"$oid": "6068c7f3245c782e76e03b07"
+		},
+		"id": "45fdb11e-d8ee-46be-849d-931d8228531c",
+		"name": "Pruebas Sixbell"
+	},
+	{
+		"_id": {
+			"$oid": "6068c7f3245c782e76e03b08"
+		},
+		"id": "8b4735b9-948d-4f51-8e1a-392d3fd7cb44",
+		"name": "Reportes Konexo"
+	}
+]

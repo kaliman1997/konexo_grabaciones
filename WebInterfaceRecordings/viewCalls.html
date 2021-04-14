@@ -1,0 +1,177 @@
+<html>
+<head>
+    <title>Grabaciones Konexo</title>
+    <link rel='icon' href='/WebRecordings/assets/images/favicon.ico' type='image/x-icon'>
+    <script src='/WebReports/assets/libs/jquery/3.5.1/jquery-3.5.1.min.js'></script>
+    <script src='/WebReports/assets/libs/jquery/3.5.1/popper.min.js'></script>
+
+    <link rel='stylesheet' href='/WebReports/assets/libs/bootstrap/4.5.2/bootstrap.min.css'>
+    <script src='/WebReports/assets/libs/bootstrap/4.5.2/bootstrap.min.js'></script>
+
+    <link rel='stylesheet' href='/WebReports/assets/libs/select2/css/select2.min.css'>
+    <script src='/WebReports/assets/libs/select2/js/select2.full.min.js'></script>
+
+    <script src='/WebReports/assets/libs/moments/2.22.1/moment-with-locales.min.js'></script>
+
+    <script src='/WebReports/assets/libs/daterangepicker/daterangepicker.min.js'></script>
+    <link rel='stylesheet' href='/WebReports/assets/libs/daterangepicker/daterangepicker.min.css'>
+
+    <script defer src='/WebReports/assets/libs/bootstrap-datepicker/1.9.0/bootstrap-datepicker.min.js'></script>
+
+    <script defer src='https://kit.fontawesome.com/6b338f1620.js'></script>
+
+    <script src='/WebReports/assets/libs/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js'></script>
+    <link rel='stylesheet' href='/WebReports/assets/libs/mCustomScrollbar/jquery.mCustomScrollbar.min.css'>
+
+    <script src='/WebReports/assets/libs/socket.io/socket.io.js'></script>
+
+    <link rel='stylesheet' href='https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css'>
+    <link rel='stylesheet' href='/WebReports/assets/libs/datatables/1.10.15/css/custom.css'>
+    <script src='/WebReports/assets/libs/datatables/1.10.15/js/jquery.dataTables.js'></script>
+    <script src='/WebReports/assets/libs/datatables/1.10.15/js/dataTables.bootstrap4.min.js'></script>
+
+    <link rel='stylesheet' href='/WebRecordings/assets/libs/konexo/common.css'>
+    <script src='/WebRecordings/assets/libs/konexo/common.js'></script>
+    <script src='/WebRecordings/assets/libs/konexo/viewCalls.js'></script>
+    <link rel='stylesheet' href='/WebRecordings/assets/libs/MultiSelect/multiselect.min.css'>
+    <script src='/WebRecordings/assets/libs/MultiSelect/multiselect.min.js'></script>
+    <link rel="stylesheet" href="/WebRecordings/assets/libs/Toastr-2.1.3/css/toastr.css">
+    <script src="/WebRecordings/assets/libs/Toastr-2.1.3/js/toastr.js"></script>
+
+    <script>
+        var toastr_opts = {
+            closeButton: true,
+            debug: false,
+            newestOnTop: true,
+            progressBar: true,
+            positionClass: 'toast-top-right',
+            preventDuplicates: false,
+            onclick: null,
+            showDuration: "100",
+            hideDuration: "100",
+            timeOut: "2500",
+            extendedTimeOut: "1000",
+            showEasing: "linear",
+            hideEasing: "linear",
+            showMethod: "FadeIn",
+            hideMethod: "FadeOut"
+        };
+
+        var modal_opts = {
+            backdrop: 'static',
+            keyboard: false,
+            ignoreBackdropClick: true
+        };
+    </script>
+</head>
+<body>
+<div id='overlay_page'>
+    <div class='spinner'></div>
+</div>
+<div class="wrapper">
+    <nav id='sidebar' style="display: none">
+        <div class='sidebar-header' loading='lazy'></div>
+        <div id="main_container_nav"></div>
+    </nav>
+    <div id='content' class="active">
+        <nav class='navbar navbar-expand-lg navbar-light bg-light'>
+            <div class='container-fluid'>
+                <button type='button' id='sidebarCollapse1' class='btn btn-info'>
+                    <i class='fas fa-align-left'></i> <span style='margin-left: 10px;'>Menu Principal</span>
+                </button>
+                <button class='btn btn-dark d-inline-block d-lg-none ml-auto' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
+                    <i class='fas fa-align-justify'></i>
+                </button>
+                <div class='collapse navbar-collapse' id='navbarSupportedContent'>
+                    <ul class='nav navbar-nav ml-auto'>
+                        <li class='nav-item active'>
+                            <form class='form-inline' style='margin-top: 20px;'>
+                                <button class='btn' style='margin-right: 15px;' type='button' id='download' onClick="location.href='/WebRecordings/Download'">Proceso Descarga
+                                </button>
+                                <button class='btn' style='margin-right: 15px;' type='button' id='delete' onClick="location.href='/WebRecordings/Delete'">Proceso Eliminar
+                                </button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="ProcessesDivPrincipal">
+            <div class="row">
+                <div class="col-3">
+                    <div class="row">
+                        <h5 class="col-4">Nombre: </h5>
+                        <label id="deleteNameProcesses" class="col-8"></label>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="row">
+                        <h5 class="col-4"> Tipo: </h5>
+                        <label id="deleteTypeProcesses" class="col-8"></label>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="row">
+                        <h5 class="col-6"> Creación: </h5>
+                        <label id="deleteCreateAtProcesses" class="col-6"></label>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="row">
+                        <h5 class="col-8"> Tiempo de ejecución: </h5>
+                        <label id="deleteRunTimeProcesses" class="col-4"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="row">
+                        <h4 class="col-12">Filtros aplicados</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <div class="row">
+                        <h5 class="col-8">Fecha Inicio: </h5>
+                        <label id="deleteStartDate" class="col-4"></label>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="row">
+                        <h5 class="col-8">Fecha Fin: </h5>
+                        <label id="deleteEndDate" class="col-4"></label>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="row">
+                        <h5 class="col-8">Campo Personalizado: </h5>
+                        <label id="deleteCampoPersonalizado" class="col-4"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="row">
+                        <h5 class="col-3">Agentes: </h5>
+                        <label id="deleteAgent" class="col-9"></label>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="row">
+                        <h5 class="col-3">Grupos: </h5>
+                        <label id="deleteGroup" class="col-9"></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div>
+            <div id='viewDeletedRecordings' class='text-center'>
+                <table id='viewDeletedRecordingsList' class='table table-condensed table-hover table-striped' style='width: 100%;'></table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,286 @@
+<html>
+	<head>
+		<title>Reportes Konexo</title>
+		<link rel='icon' href='/WebReports/assets/images/favicon.ico' type='image/x-icon'>
+		<script src='/WebReports/assets/libs/jquery/3.5.1/jquery-3.5.1.min.js'></script>
+		<script src='/WebReports/assets/libs/jquery/3.5.1/popper.min.js'></script>
+
+		<link rel='stylesheet' href='/WebReports/assets/libs/bootstrap/4.5.2/bootstrap.min.css'>
+		<script src='/WebReports/assets/libs/bootstrap/4.5.2/bootstrap.min.js'></script>
+
+		<link rel='stylesheet' href='/WebReports/assets/libs/select2/css/select2.min.css'>
+		<script src='/WebReports/assets/libs/select2/js/select2.full.min.js'></script>
+
+		<script src='/WebReports/assets/libs/moments/2.22.1/moment-with-locales.min.js'></script>
+
+		<script src='/WebReports/assets/libs/daterangepicker/daterangepicker.min.js'></script>
+		<link rel='stylesheet' href='/WebReports/assets/libs/daterangepicker/daterangepicker.min.css'>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.min.css" integrity="sha512-rxThY3LYIfYsVCWPCW9dB0k+e3RZB39f23ylUYTEuZMDrN/vRqLdaCBo/FbvVT6uC2r0ObfPzotsfKF9Qc5W5g==" crossorigin="anonymous" />
+
+		<script defer src='https://kit.fontawesome.com/6b338f1620.js'></script>
+
+		<script src='/WebReports/assets/libs/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js'></script>
+		<link rel='stylesheet' href='/WebReports/assets/libs/mCustomScrollbar/jquery.mCustomScrollbar.min.css'>
+
+		<script src='/WebReports/assets/libs/socket.io/socket.io.js'></script>
+
+		<link rel='stylesheet' href='https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css'>
+		<link rel='stylesheet' href='/WebReports/assets/libs/datatables/1.10.15/css/custom.css'>
+		<script src='/WebReports/assets/libs/datatables/1.10.15/js/jquery.dataTables.js'></script>
+		<script src='/WebReports/assets/libs/datatables/1.10.15/js/dataTables.bootstrap4.min.js'></script>
+
+		<link rel='stylesheet' href='/WebReports/assets/libs/sixbell/common.css'>
+		<script src='/WebReports/assets/libs/sixbell/common.js'></script>
+
+		<!-- icheck (stylished checkbox -->
+		<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/icheck-2@2.0.0/skins/all.css'>
+		<script src='https://cdn.jsdelivr.net/npm/icheck-2@2.0.0/icheck.min.js'></script>
+
+		<script src='https://sdk-cdn.mypurecloud.com/javascript/106.0.0/purecloud-platform-client-v2.min.js'></script>
+		<script src='https://sdk-cdn.mypurecloud.com/client-apps/2.0.0/purecloud-client-app-sdk-e9989de7.min.js'></script>
+		<script src='/WebReports/assets/libs/sixbell/oauth.js'></script>
+
+		<script>
+			var toastr_opts = {
+				closeButton      : true,
+				debug            : false,
+				newestOnTop      : true,
+				progressBar      : true,
+				positionClass    : 'toast-top-right',
+				preventDuplicates: false,
+				onclick          : null,
+				showDuration     : "100",
+				hideDuration     : "100",
+				timeOut          : "2500",
+				extendedTimeOut  : "1000",
+				showEasing       : "linear",
+				hideEasing       : "linear",
+				showMethod       : "FadeIn",
+				hideMethod       : "FadeOut"
+			};
+
+			var modal_opts = {
+				backdrop           : 'static',
+				keyboard           : false,
+				ignoreBackdropClick: true
+			};
+
+			$(document).ready(function ($) {
+
+				$("input").not('[id^="bst_"]').icheck(
+					{
+
+						autoInit          : true,// auto init on domready
+						autoAjax          : false,// auto handle ajax loaded inputs
+						tap               : true,// remove 300ms click delay on touch devices
+						checkboxClass     : 'icheckbox_flat-purple',							// customization class names
+						radioClass        : 'iradio_flat-purple',
+						checkedClass      : 'checked',
+						disabledClass     : 'disabled',
+						indeterminateClass: 'indeterminate',
+						hoverClass        : 'hover',
+						focusClass        : 'focus',
+						activeClass       : 'active'
+					}
+				);
+			});
+
+		</script>
+		<script src='/WebReports/assets/libs/sixbell/reporte1.js'></script>
+	</head>
+
+	<body>
+		<div id='overlay_page'>
+			<div class='spinner'>
+			</div>
+		</div>
+		<div class='wrapper'>
+			<nav id='sidebar'>
+				<div class='sidebar-header'>
+					<img src='/WebReports/assets/images/posadas.png' alt='posadas' width='300'>
+				</div>
+				<ul class='list-unstyled components'>
+					<p>Reportes Disponibles</p>
+					<li class='active'>
+						<a href='#AgenteSubmenu' data-toggle='collapse' aria-expanded='false' class='dropdown-toggle'>Agente</a>
+						<ul class='collapse list-unstyled' id='AgenteSubmenu'>
+							<li>
+								<a href='/WebReports?reporte=1&pcEnvironment=mypurecloud.com' class="dropdown-item">Auxiliar Diario</a>
+							</li>
+							<li>
+								<a href='/WebReports?reporte=19&pcEnvironment=mypurecloud.com' class='dropdown-item'>Grupo en Auxiliar Diario</a>
+							</li>
+							<li>
+								<a href='/WebReports?reporte=7&pcEnvironment=mypurecloud.com' class='dropdown-item'>Split/Skill Diario</a>
+							</li>
+							<li>
+								<a href='/WebReports?reporte=24&pcEnvironment=mypurecloud.com' class='dropdown-item'>Resumen de intervalo</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href='#DisenadorSubmenu' data-toggle='collapse' aria-expanded='true' class='dropdown-toggle'>Dise&ntilde;ador</a>
+						<ul class='collapse show list-unstyled' id='DisenadorSubmenu'>
+							<li>
+								<a href='/WebReports?reporte=13&pcEnvironment=mypurecloud.com' class='dropdown-item'>Agentes Conectados</a>
+							</li>
+							<li>
+								<a href='/WebReports?reporte=2&pcEnvironment=mypurecloud.com' class='dropdown-item'>Perfil de Llamadas - Diario</a>
+							</li>
+							<li>
+								<a href='/WebReports?reporte=20&pcEnvironment=mypurecloud.com' class='dropdown-item'>Agente Sumarizado con tiempo en llamada</a>
+							</li>
+							<li>
+								<a href='/WebReports?reporte=x&pcEnvironment=mypurecloud.com' class='dropdown-item'>Agente Sumarizado con tiempo en llamada 2</a>
+							</li>
+							<li>
+								<a href='/WebReports?reporte=6&pcEnvironment=mypurecloud.com' class='dropdown-item'>AHT Multiskill x Intervalos</a>
+							</li>
+							<li>
+								<a href='/WebReports?reporte=25&pcEnvironment=mypurecloud.com' class='dropdown-item'>Banorte Histórico VDN</a>
+							</li>
+							<li>
+								<a href='/WebReports?reporte=14&pcEnvironment=mypurecloud.com' class='dropdown-item'>Banorte Histórico skill BK</a>
+							</li>
+							<li>
+								<a href='/WebReports?reporte=3&pcEnvironment=mypurecloud.com' class='dropdown-item'>Indicadores con Auxiliar Diario Mensual</a>
+							</li>
+							<li>
+								<a href='/WebReports?reporte=21&pcEnvironment=mypurecloud.com' class='dropdown-item'>Indicadores con Auxiliar Diario Mensual 2</a>
+							</li>
+							<li>
+								<a href='/WebReports?reporte=9&pcEnvironment=mypurecloud.com' class='dropdown-item'>Indicadores con Auxiliar Diario Mensual 3</a>
+							</li>
+							<li>
+								<a href='/WebReports?reporte=15&pcEnvironment=mypurecloud.com' class='dropdown-item'>Resumen diario del grupo</a>
+							</li>
+							<li>
+								<a href='/WebReports?reporte=26&pcEnvironment=mypurecloud.com' class='dropdown-item'>Servicio a Clientes Outbound Daily</a>
+							</li>
+							<li>
+								<a href='/WebReports?reporte=4&pcEnvironment=mypurecloud.com' class='dropdown-item active'>Summary Interval call profile</a>
+							</li>
+							<li>
+								<a href='/WebReports?reporte=22&pcEnvironment=mypurecloud.com' class='dropdown-item'>Tiempo de Staff Desglosado BK</a>
+							</li>
+							<li>
+								<a href='/WebReports?reporte=10&pcEnvironment=mypurecloud.com' class='dropdown-item'>Tiempo Staff Genesys</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href='#SplitSubmenu' data-toggle='collapse' aria-expanded='false' class='dropdown-toggle'>Split / Skill</a>
+						<ul class='collapse list-unstyled' id='SplitSubmenu'>
+							<li>
+								<a href='/WebReports?reporte=16&pcEnvironment=mypurecloud.com' class='dropdown-item'>Llamadas salientes por intervalo</a>
+							</li>
+							<li>
+								<a href='/WebReports?reporte=27&pcEnvironment=mypurecloud.com' class='dropdown-item'>Llamadas salientes diarias</a>
+							</li>
+							<li>
+								<a href='/WebReports?reporte=5&pcEnvironment=mypurecloud.com' class='dropdown-item'>Perfil de llamadas diario</a>
+							</li>
+							<li>
+								<a href='/WebReports?reporte=23&pcEnvironment=mypurecloud.com' class='dropdown-item'>Reportediario</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href='#VDNSubmenu' data-toggle='collapse' aria-expanded='false' class='dropdown-toggle'>VDN</a>
+						<ul class='collapse list-unstyled' id='VDNSubmenu'>
+							<li>
+								<a href='/WebReports?reporte=11&pcEnvironment=mypurecloud.com' class='dropdown-item'>Flujo de multiACD diario</a>
+							</li>
+							<li>
+								<a href='WebReports?reporte=28&pcEnvironment=mypurecloud.com' class='dropdown-item'>Reporte (Skill) Diario</a>
+							</li>
+							<li>
+								<a href='#'>Reporte (Skill) Diario</a>
+							</li>
+							<li>
+								<a href='#'>Reporte (Skill) Mensual</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+			<div id='content'>
+				<nav class='navbar navbar-expand-lg navbar-light bg-light'>
+					<div class='container-fluid'>
+						<div>
+							<button type='button' id='sidebarCollapse' class='btn btn-info'>
+								<i class='fas fa-align-left'></i>
+								<span style='margin-left: 10px;'>Auxiliar Diario</span>
+							</button>
+							<button type='button' id='showReportHistory' class='btn btn-warning'>
+								<i class='fas fa-clock'></i>
+								<span style='margin-left: 10px;'>Historial reportes</span>
+							</button>
+							<button type='button' id='showsourceList' class='btn btn-success' style='display: none'>
+								<i class='fas fa-clock'></i>
+								<span style='margin-left: 10px;'>Crear Reporte</span>
+							</button>
+						</div>
+
+						<div id='range_selector' class='daterange add-ranges inl'>
+							<div class='input-group'>
+								<div class='input-group-prepend' id='start_range_trigger'>
+									<span class='input-group-text'>
+										<i class='far fa-calendar-alt'></i>
+									</span>
+								</div>
+								<input type='text' class='form-control' id='start_range_label' style='width: 350px;' readonly>
+								<div class='input-group-prepend' id='filter_by_user'>
+									<span class='input-group-text'>
+										<i class='far fa-user text-danger' id='filter_by_user_label'></i>
+									</span>
+								</div>
+								<!--<div class='input-group-prepend' id='filter_by_group'>
+									<span class='input-group-text'>
+										<i class='far fa-users' id='filter_by_group_label'></i>
+									</span>
+								</div>-->
+								<div class='input-group-append'>
+									<button class='btn btn-outline-success' type='button' id='report_submit'>Generar Reporte</button>
+									<input type='hidden' id='start_date'>
+									<input type='hidden' id='final_date'>
+								</div>
+							</div>
+						</div>
+					</div>
+				</nav>
+				<div id='reportContainer'>
+					<input type='hidden' id='userId'>
+					<table id='source_list' class='table table-condensed table-hover table-striped' style='width: 100%;'></table>
+					<table id='report_list' class='table table-condensed table-hover table-striped' style='width: 100%; display: none'></table>
+				</div>
+			</div>
+		</div>
+		<div class='modal fade' id='empty_error_modal'>
+			<div class='vertical-alignment-helper'>
+				<div class='vertical-align-center'>
+					<div class='modal-dialog modal-lg'>
+						<div class='modal-content'>
+							<div class='modal-no-header'>
+								<button type='button' class='close' data-dismiss='modal'>
+									<i class='fas fa-times'></i>
+								</button>
+								<h4 class='modal-title'>Error en reporte</h4>
+							</div>
+							<div class='modal-body text-center'>
+								<br><br>
+								El reporte no ha podido ser generado, por favor verifique haber seleccionado 1 agente o 1 grupo
+								<br><br>
+							</div>
+							<div class='modal-footer'>
+								<button type='button' class='btn btn-red' data-dismiss='modal'>Cerrar</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,220 @@
+<html>
+<head>
+    <title>Grabaciones Konexo</title>
+    <link rel='icon' href='/WebRecordings/assets/images/favicon.ico' type='image/x-icon'>
+    <script src='/WebReports/assets/libs/jquery/3.5.1/jquery-3.5.1.min.js'></script>
+    <script src='/WebReports/assets/libs/jquery/3.5.1/popper.min.js'></script>
+
+    <link rel='stylesheet' href='/WebReports/assets/libs/bootstrap/4.5.2/bootstrap.min.css'>
+    <script src='/WebReports/assets/libs/bootstrap/4.5.2/bootstrap.min.js'></script>
+
+    <link rel='stylesheet' href='/WebReports/assets/libs/select2/css/select2.min.css'>
+    <script src='/WebReports/assets/libs/select2/js/select2.full.min.js'></script>
+
+    <script src='/WebReports/assets/libs/moments/2.22.1/moment-with-locales.min.js'></script>
+
+    <script src='/WebReports/assets/libs/daterangepicker/daterangepicker.min.js'></script>
+    <link rel='stylesheet' href='/WebReports/assets/libs/daterangepicker/daterangepicker.min.css'>
+
+    <script defer src='/WebReports/assets/libs/bootstrap-datepicker/1.9.0/bootstrap-datepicker.min.js'></script>
+
+    <script defer src='https://kit.fontawesome.com/6b338f1620.js'></script>
+
+    <script src='/WebReports/assets/libs/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js'></script>
+    <link rel='stylesheet' href='/WebReports/assets/libs/mCustomScrollbar/jquery.mCustomScrollbar.min.css'>
+
+    <script src='/WebReports/assets/libs/socket.io/socket.io.js'></script>
+
+    <link rel='stylesheet' href='https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css'>
+    <link rel='stylesheet' href='/WebReports/assets/libs/datatables/1.10.15/css/custom.css'>
+    <script src='/WebReports/assets/libs/datatables/1.10.15/js/jquery.dataTables.js'></script>
+    <script src='/WebReports/assets/libs/datatables/1.10.15/js/dataTables.bootstrap4.min.js'></script>
+
+    <link rel='stylesheet' href='/WebRecordings/assets/libs/konexo/common.css'>
+    <script src='/WebRecordings/assets/libs/konexo/common.js'></script>
+    <script src='/WebRecordings/assets/libs/konexo/delete.js'></script>
+    <link rel='stylesheet' href='/WebRecordings/assets/libs/MultiSelect/multiselect.min.css'>
+    <script src='/WebRecordings/assets/libs/MultiSelect/multiselect.min.js'></script>
+    <link rel="stylesheet" href="/WebRecordings/assets/libs/Toastr-2.1.3/css/toastr.css">
+    <script src="/WebRecordings/assets/libs/Toastr-2.1.3/js/toastr.js"></script>
+
+    <script>
+        var toastr_opts = {
+            closeButton: true,
+            debug: false,
+            newestOnTop: true,
+            progressBar: true,
+            positionClass: 'toast-top-right',
+            preventDuplicates: false,
+            onclick: null,
+            showDuration: "100",
+            hideDuration: "100",
+            timeOut: "2500",
+            extendedTimeOut: "1000",
+            showEasing: "linear",
+            hideEasing: "linear",
+            showMethod: "FadeIn",
+            hideMethod: "FadeOut"
+        };
+
+        var modal_opts = {
+            backdrop: 'static',
+            keyboard: false,
+            ignoreBackdropClick: true
+        };
+    </script>
+</head>
+<body>
+<div id='overlay_page'>
+    <div class='spinner'></div>
+</div>
+<div class="wrapper">
+    <nav id='sidebar'>
+        <div class='sidebar-header' loading='lazy'></div>
+        <div id="main_container_nav"></div>
+        <div class="container" id="delete_nav">
+            <div class='row'>
+                <div class='col-12'>
+                    <h3 style='text-align: center'>Nuevo Proceso de Borrado</h3><br>
+                    <div class="mb-3">
+                        <label for="inputNameDelete" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="inputNameDelete" placeholder="Placeholder">
+                    </div>
+                    <div class="mb-3">
+                        <label class='form-label'>Inicio</label>
+                        <input type='date' class="form-control" id="fechaInicioDelete"/>
+                    </div>
+                    <div class="mb-3">
+                        <label class='form-label'>Fin</label>
+                        <input type='date' class="form-control" id="fechaFinDelete"/>
+                    </div>
+                    <div class="mb-3">
+                        <label for="agentTextDelete" class="form-label">Agente</label>
+                        <div class="input-group">
+                            <input type="text" class="col-12 form-control" id="agentTextDelete" placeholder='Placeholder'>
+                            <button class="btn btn-outline-secondary" type="button" id='buttonAgentDelete' style="background: white">
+                                <i class="fa fa-pencil" aria-hidden="true" style="color: #0c0c0c"></i></button>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="agentTextDelete" class="form-label">Grupo</label>
+                        <div class="input-group">
+                            <input type="text" class="col-12 form-control" id="groupTextDelete" placeholder='Placeholder'>
+                            <button class="btn btn-outline-secondary" type="button" id='buttonGroupDelete' style="background: white">
+                                <i class="fa fa-pencil" aria-hidden="true" style="color: #0c0c0c"></i></button>
+                        </div>
+                    </div>
+                    <button type='button' id="createDeleteSubmit" class='btn btn-primary'>Crear</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div id='content'>
+        <nav class='navbar navbar-expand-lg navbar-light bg-light'>
+            <div class='container-fluid'>
+                <button type='button' id='sidebarCollapse' class='btn btn-info'>
+                    <i class='fas fa-align-left'></i> <span style='margin-left: 10px;'>Menu Principal</span>
+                </button>
+                <button class='btn btn-dark d-inline-block d-lg-none ml-auto' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
+                    <i class='fas fa-align-justify'></i>
+                </button>
+                <div class='collapse navbar-collapse' id='navbarSupportedContent'>
+                    <ul class='nav navbar-nav ml-auto'>
+                        <li class='nav-item active'>
+                            <form class='form-inline' style='margin-top: 20px;'>
+                                <button class='btn' style='margin-right: 15px;' type='button' id='download' onClick="location.href='/WebRecordings/Download'">Proceso Descarga
+                                </button>
+                                <button class='btn' style='margin-right: 15px;' type='button' id='delete' onClick="location.href='/WebRecordings/Delete'">Proceso Eliminar
+                                </button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div>
+            <div style='margin-top: 0px;' id='delete_content_div' class='text-center'>
+                <table id='delete_list' class='table table-condensed table-hover table-striped' style='width: 100%;'></table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class='modal fade' id='agentModalSearch'>
+    <div class='vertical-alignment-helper'>
+        <div class='vertical-align-center'>
+            <div class='modal-dialog modal-lg'>
+                <div class='modal-content'>
+                    <div class='modal-no-header'>
+                        <button type='button' class='close' data-dismiss='modal'>
+                            <i class='fas fa-times'></i>
+                        </button>
+                        <h4 class='modal-title' style="text-align: center">Agentes</h4>
+                    </div>
+                    <div class='modal-body'>
+                        <br>
+                        <form id="searchBar">
+                            <div class='input-group mb-3'>
+                                <input type='text' class='form-control' placeholder='Search' aria-label="Recipient's username" aria-describedby='button-addon2'>
+                                <button class='btn btn-outline-secondary' type='button' id='searchAgentModal'>
+                                    <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-search' viewBox='0 0 16 16'>
+                                        <path d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </form>
+                        <form id="multiSelectBody">
+                            <select multiple="multiple" id="aqm_switch" name="aqm_switch[]"></select>
+                        </form>
+                    </div>
+                    <div class='modal-footer'>
+                        <button type='button' class='btn btn-red' data-dismiss='modal'>Cerrar</button>
+                        <button type='button' class='btn btn-primary' id="agentSubmit" data-dismiss='modal'>Guardar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class='modal fade' id='groupModalSearch'>
+    <div class='vertical-alignment-helper'>
+        <div class='vertical-align-center'>
+            <div class='modal-dialog modal-lg'>
+                <div class='modal-content'>
+                    <div class='modal-no-header'>
+                        <button type='button' class='close' data-dismiss='modal'>
+                            <i class='fas fa-times'></i>
+                        </button>
+                        <h4 class='modal-title' style="text-align: center">Grupos</h4>
+                    </div>
+                    <div class='modal-body'>
+                        <br>
+                        <form id="searchBarGroup">
+                            <div class='input-group mb-3'>
+                                <input type='text' class='form-control' placeholder='Search' aria-label="Recipient's username" aria-describedby='button-addon2'>
+                                <button class='btn btn-outline-secondary' type='button' id='searchGroupModal'>
+                                    <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-search' viewBox='0 0 16 16'>
+                                        <path d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </form>
+                        <form id="multiSelectBodyGroup">
+                            <select multiple="multiple" id="aqm_switch_Group" name="aqm_switch[]"></select>
+                        </form>
+                    </div>
+                    <div class='modal-footer'>
+                        <button type='button' class='btn btn-red' data-dismiss='modal'>Cerrar</button>
+                        <button type='button' class='btn btn-primary' id="groupSubmit" data-dismiss='modal'>Guardar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

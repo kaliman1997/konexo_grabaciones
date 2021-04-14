@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig host="konexo.sixbell.cloud" id="6f047a25-639c-4820-b039-2afb57cc1d3b" keyPath="$PROJECT_DIR$/../../Keys/konexosixbellcloud.pem" port="22" customName="konexo" nameFormat="CUSTOM" username="ubuntu">
+        <option name="customName" value="konexo" />
+      </sshConfig>
+    </configs>
+  </component>
+</project>

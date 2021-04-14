@@ -1,0 +1,16 @@
+<component name="ProjectCodeStyleConfiguration">
+  <code_scheme name="Project" version="173">
+    <HTMLCodeStyleSettings>
+      <option name="HTML_ATTRIBUTE_WRAP" value="0" />
+      <option name="HTML_TEXT_WRAP" value="0" />
+      <option name="HTML_KEEP_LINE_BREAKS" value="false" />
+      <option name="HTML_KEEP_LINE_BREAKS_IN_TEXT" value="false" />
+      <option name="HTML_ALIGN_ATTRIBUTES" value="false" />
+    </HTMLCodeStyleSettings>
+    <codeStyleSettings language="EditorConfig">
+      <option name="SPACE_BEFORE_COLON" value="true" />
+      <option name="SPACE_AFTER_COLON" value="true" />
+      <option name="SOFT_MARGINS" value="0" />
+    </codeStyleSettings>
+  </code_scheme>
+</component>
